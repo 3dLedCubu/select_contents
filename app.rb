@@ -15,6 +15,6 @@ class App < Sinatra::Base
   Tilt::CoffeeScriptTemplate.default_bare = true # coffeescriptの即時関数を外す
 
   get '/' do
-    haml :index, layout: :layout, locals: { title: 'select contents' }
+    haml :index, locals: { title: 'select contents' }
   end
 end
