@@ -1,0 +1,11 @@
+.icon
+{
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-color: #FDD;
+    color: #77C;
+    text-align: center;
+    border-radius: 20px;
+    vertical-align:middle;
+}

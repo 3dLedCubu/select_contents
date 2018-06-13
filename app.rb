@@ -15,6 +15,15 @@ class App < Sinatra::Base
   Tilt::CoffeeScriptTemplate.default_bare = true # coffeescriptの即時関数を外す
 
   get '/' do
+    @contents = [
+      { id: 'lego', name: 'LEGO', port: 5101 },
+      { id: 'screen_saver', name: 'SCREEN SAVER', port: 5201 },
+      { id: 'paint', name: 'PAINT', port: 5301 },
+    ]
     haml :index, locals: { title: 'select contents' }
+  end
+
+  get '/index.js' do
+    coffee :index
   end
 end
