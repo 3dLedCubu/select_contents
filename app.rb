@@ -6,6 +6,13 @@ require 'json'
 require 'coffee-script'
 require 'socket'
 
+$contents = [
+  { id: 'lego', name: 'LEGO', port: 5101, selected: false },
+  { id: 'screen_saver', name: 'SCREEN SAVER', port: 5201, selected: false },
+  { id: 'paint', name: 'PAINT', port: 5301, selected: false },
+  { id: 'hello', name: 'HELLO', port: 5401, selected: false }
+]
+
 ##
 # Server program
 class App < Sinatra::Base
@@ -28,22 +35,11 @@ class App < Sinatra::Base
 
   def initialize
     super
-    @contents = [
-      { id: 'lego', name: 'LEGO', port: 5101, selected: false },
-      { id: 'screen_saver', name: 'SCREEN SAVER', port: 5201, selected: false },
-      { id: 'paint', name: 'PAINT', port: 5301, selected: false },
-      { id: 'hello', name: 'HELLO', port: 5401, selected: false }
-    ]
-    @contents.each { |c| Thread.new { loop { flow(c) } } }
+    $contents.each { |c| Thread.new { loop { flow(c) } } }
   end
 
   get '/' do
-    @contents = [
-      { id: 'lego', name: 'LEGO', port: 5101, selected: false },
-      { id: 'screen_saver', name: 'SCREEN SAVER', port: 5201, selected: false },
-      { id: 'paint', name: 'PAINT', port: 5301, selected: false },
-      { id: 'hello', name: 'HELLO', port: 5401, selected: false }
-    ]
+    @contents = $contents
     haml :index, locals: { title: 'select contents' }
   end
 
