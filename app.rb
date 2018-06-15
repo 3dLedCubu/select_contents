@@ -30,7 +30,7 @@ class App < Sinatra::Base
     return unless content[:selected]
     puts 'hoge'
     UDPSocket.open do |udp|
-      sockaddr = Socket.pack_sockaddr_in(9001, '127.0.0.1')
+      sockaddr = Socket.pack_sockaddr_in(9001, '192.168.0.10')
       udp.send(d, 0, sockaddr)
     end
   end
