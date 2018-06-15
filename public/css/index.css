@@ -1,20 +1,24 @@
-.icon
+.selected
 {
     display: inline-block;
     width: 200px;
     height: 200px;
     text-align: center;
     border-radius: 20px;
-}
-.selected
-{
     background-color: #DFD;
     color: #707;
+    margin: 20px;
 }
 .unselected
 {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    border-radius: 20px;
     background-color: #FDD;
     color: #077;
+    margin: 20px;
 }
 .icon span
 {

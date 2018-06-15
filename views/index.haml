@@ -9,10 +9,9 @@
     %link{ rel: "shortcut icon", href: "assets/favicon.jpg" }
     %link{ rel: "apple-touch-icon", href: "assets/favicon.jpg" }
     %script{ src: "/js/jquery-3.3.1.min.js" }
-    %script{ src: "js/index.js" }
+    %script{ src: "/js/index.js" }
     %title=title
   %body
     - @contents.each do |c|
-      %div.icon{ onclick: "click_icon(\'#{c[:id]}\');" }
-        %div{ id: c[:id], class: 'selected' }
-          %span #{c[:name]}
+      %div{ id: c[:id], class: 'selected', onclick: "click_icon(\'#{c[:id]}\');" }
+        %span #{c[:name]}
