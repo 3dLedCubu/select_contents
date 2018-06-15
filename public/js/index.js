@@ -9,17 +9,15 @@ function click_icon(id)
     })
     .done((data) => {
         var contents = JSON.parse(data).select;
-        for(var i = 0; i < contents.length; ++i) {
-            var c = contents[i];
-            var obj = $('#' + c.id);
+        contents.forEach(function(c){
+            var cls = ['selected', 'unselected'];
             if(c.selected){
-                obj.removeClass('unselected');
-                obj.addClass('selected');
-            }else{
-                obj.removeClass('selected');
-                obj.addClass('unselected');
+                cls = cls.reverse();
             }
-        }
+            var obj = $('#' + c.id);
+            obj.removeClass(cls[0]);
+            obj.addClass(cls[1]);
+        });
     })
     .fail((data) => {
         alert('failed');
