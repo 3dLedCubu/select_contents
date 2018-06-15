@@ -28,7 +28,7 @@ class App < Sinatra::Base
     end
     return unless content[:selected]
     UDPSocket.open do |udp|
-      sockaddr = Socket.pack_sockaddr_in(5001, '127.0.0.1')
+      sockaddr = Socket.pack_sockaddr_in(9001, '192.168.0.10')
       udp.send(d, 0, sockaddr)
     end
   end
@@ -43,7 +43,8 @@ class App < Sinatra::Base
     haml :index, locals: { title: 'select contents' }
   end
 
-  get '/index.js' do
-    coffee :index
+  post '/select' do
+    p params
+    'ok'
   end
 end
