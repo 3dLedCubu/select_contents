@@ -11,7 +11,14 @@ function click_icon(id)
         var contents = JSON.parse(data).select;
         for(var i = 0; i < contents.length; ++i) {
             var c = contents[i];
-            document.getElementById(c.id).className = c.selected ? 'selected' : 'unselected';
+            var obj = $('#' + c.id);
+            if(c.selected){
+                obj.removeClass('unselected');
+                obj.addClass('selected');
+            }else{
+                obj.removeClass('selected');
+                obj.addClass('unselected');
+            }
         }
     })
     .fail((data) => {
