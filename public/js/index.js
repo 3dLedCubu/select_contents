@@ -8,6 +8,7 @@ function click_icon(id)
         }
     })
     .done((data) => {
+        $(id).css('selected');
     })
     .fail((data) => {
         alert('failed');

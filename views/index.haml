@@ -14,4 +14,5 @@
   %body
     - @contents.each do |c|
       %div.icon{ onclick: "click_icon(\'#{c[:id]}\');" }
-        %span #{c[:name]}
+        %div{ id: c[:id], class: 'selected' }
+          %span #{c[:name]}

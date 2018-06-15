@@ -44,7 +44,11 @@ class App < Sinatra::Base
   end
 
   post '/select' do
-    p params
+    id = params['id']
+    $contents.each do |c|
+      c[:selected] = (c[:id] == id)
+    end
+    puts $contents
     'ok'
   end
 end
