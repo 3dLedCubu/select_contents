@@ -1,27 +1,26 @@
+.icon
+{
+    text-align: center;
+    margin: 50px;
+}
 .selected
 {
-    display: inline-block;
+    vertical-align: middle;
+	display: table-cell;
     width: 200px;
     height: 200px;
-    text-align: center;
     border-radius: 20px;
     border: solid 10px #AFA;
     background-color: #DFD;
     color: #707;
-    margin: 20px;
 }
 .unselected
 {
-    display: inline-block;
+    vertical-align: middle;
+	display: table-cell;
     width: 200px;
     height: 200px;
-    text-align: center;
     border-radius: 20px;
     background-color: #FDD;
     color: #077;
-    margin: 20px;
-}
-.icon span
-{
-    vertical-align:middle;
 }

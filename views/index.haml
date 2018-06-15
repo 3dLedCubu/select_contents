@@ -12,6 +12,10 @@
     %script{ src: "/js/index.js" }
     %title=title
   %body
-    - @contents.each do |c|
-      %div{ id: c[:id], class: 'unselected', onclick: "click_icon(\'#{c[:id]}\');" }
-        %span #{c[:name]}
+    %table
+      %tr
+        - @contents.each do |c|
+          %td
+            %div.icon
+              %span{ id: c[:id], class: 'unselected', onclick: "click_icon(\'#{c[:id]}\');" }
+                #{c[:name]}
