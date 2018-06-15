@@ -14,9 +14,7 @@ function click_icon(id)
             if(c.selected){
                 cls = cls.reverse();
             }
-            var obj = $('#' + c.id);
-            obj.removeClass(cls[0]);
-            obj.addClass(cls[1]);
+            $('#' + c.id).removeClass(cls[0]).addClass(cls[1]);
         });
     })
     .fail((data) => {
