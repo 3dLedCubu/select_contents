@@ -48,7 +48,6 @@ class App < Sinatra::Base
     $contents.each do |c|
       c[:selected] = (c[:id] == id)
     end
-    puts $contents
-    'ok'
+    p ({ select: $contents }).to_json
   end
 end

@@ -8,7 +8,11 @@ function click_icon(id)
         }
     })
     .done((data) => {
-        $(id).css('selected');
+        var contents = JSON.parse(data).select;
+        for(var i = 0; i < contents.length; ++i) {
+            var c = contents[i];
+            document.getElementById(c.id).className = c.selected ? 'selected' : 'unselected';
+        }
     })
     .fail((data) => {
         alert('failed');

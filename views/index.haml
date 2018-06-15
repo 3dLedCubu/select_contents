@@ -13,5 +13,5 @@
     %title=title
   %body
     - @contents.each do |c|
-      %div{ id: c[:id], class: 'selected', onclick: "click_icon(\'#{c[:id]}\');" }
+      %div{ id: c[:id], class: 'unselected', onclick: "click_icon(\'#{c[:id]}\');" }
         %span #{c[:name]}
