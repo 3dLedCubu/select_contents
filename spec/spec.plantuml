@@ -1,7 +1,7 @@
 @startuml
 title コンテンツ切替機構成
 
-package PC #ddf {
+package PC（192.168.0.20） #ddf {
   object "コンテンツA" as contenta #bbf
   object "コンテンツB" as contentb #bbf
   object "コンテンツC" as contentc #bbf
@@ -27,7 +27,7 @@ package PC #ddf {
   HTML -u-> Port : 切替指示
 }
 package "3D LED" as 3dled #dff {
-  object "Raspberry Pi" as rp #bff
+  object "Raspberry Pi\n(192.168.0.10:9001)" as rp #bff
 }
 exit -> rp : 描画イメージ
 
