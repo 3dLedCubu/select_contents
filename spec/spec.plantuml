@@ -1,0 +1,34 @@
+@startuml
+title コンテンツ切替機構成
+
+package PC #ddf {
+  object "コンテンツA" as contenta #bbf
+  object "コンテンツB" as contentb #bbf
+  object "コンテンツC" as contentc #bbf
+  contenta -[hidden]-> contentb
+  contentb -[hidden]-> contentc
+  package "コンテンツ切替機" as selector #fdd {
+    package Port {
+      object "ポートA" as porta #fbb
+      object "ポートB" as portb #fbb
+      object "ポートC" as portc #fbb
+      porta -[hidden]-> portb
+      portb -[hidden]-> portc
+    }
+    contenta -> porta : 描画イメージ
+    contentb -> portb : 描画イメージ
+    contentc -> portc : 描画イメージ
+    object "出口" as exit #bff
+    portb --> exit : 描画イメージ
+  }
+  package "ブラウザ" as browser #dfd {
+    object HTML
+  }
+  HTML -u-> Port : 切替指示
+}
+package "3D LED" as 3dled #dff {
+  object "Raspberry Pi" as rp #bff
+}
+exit -> rp : 描画イメージ
+
+@enduml
