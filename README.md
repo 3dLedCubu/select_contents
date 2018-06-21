@@ -23,7 +23,9 @@ rbenvでruby2.5をインストールする。
 
 `$ gem install bundler`
 
-プロキシ設定がある場合は、設定してからbundlerをインストールすること。
+プロキシ設定が必要な場合は、設定してからbundlerをインストールすること。  
+（環境変数 http_proxy を設定する）
+
 
 https://rubygems.org にアクセスできないときは、ダウンロード元を http://rubygems.org へ変更する。
 
