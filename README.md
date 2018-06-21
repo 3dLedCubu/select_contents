@@ -27,7 +27,7 @@ rbenvでruby2.5をインストールする。
 （環境変数 http_proxy を設定する）
 
 
-https://rubygems.org にアクセスできないときは、ダウンロード元を http://rubygems.org へ変更する。
+https://rubygems.org/ にアクセスできないときは、ダウンロード元を http://rubygems.org/ へ変更する。
 
 ### gemインストール
 
