@@ -4,12 +4,14 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
 require 'socket'
+#require 'Win32API'
 
 $contents = [
   { id: 'lego', name: 'ブロック', port: 5101, selected: false },
   { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
   { id: 'paint', name: 'おえかき', port: 5301, selected: false },
-  { id: 'hello', name: 'こんにちは', port: 5401, selected: false }
+  { id: 'camera', name: 'カメラ', port: 5401, selected: false },
+  { id: 'kusogeme', name: 'バカゲー', port: 5501, selected: false }
 ]
 
 ##
@@ -46,6 +48,6 @@ class App < Sinatra::Base
     $contents.each do |c|
       c[:selected] = (c[:id] == id)
     end
-    p ({ select: $contents }).to_json
+    p ({ select: $contents }).to_json 
   end
 end
