@@ -12,6 +12,9 @@ const click_icon = id => {
             }
             $('#' + c.id).removeClass(cls[0]).addClass(cls[1]);
         });
+
+        var sound = new Audio('Beep.mp3');
+        sound.play();    
     })
     .fail(data => alert('failed'));
 }

@@ -46,7 +46,12 @@ class App < Sinatra::Base
   post '/select' do
     id = params['id']
     $contents.each do |c|
-      c[:selected] = (c[:id] == id)
+      # c[:selected] = (c[:id] == id)
+      if(c[:selected]== false && c[:id] == id)
+        c[:selected] = true
+      else
+        c[:selected] = false
+      end
     end
     p ({ select: $contents }).to_json 
   end
