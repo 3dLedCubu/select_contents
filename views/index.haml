@@ -13,7 +13,9 @@
     %title=title
   %body
     %center
-      %h1 体験したいコンテンツのボタンを選択してください
+      %h1
+        %div.title 
+          体験したいコンテンツのボタンを選択してください
       %table
         %tr
           - @large_contents.each do |c|
@@ -46,4 +48,7 @@
                     %br
                     %img{height: "100", src: "assets/favicon.jpg", width: "100"}
                     -i = i+1
-              
+      %table
+        %h1
+          %span{ id: 'info', class: 'circle_icon unselected' }
+            i

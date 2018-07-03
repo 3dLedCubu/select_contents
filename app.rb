@@ -24,7 +24,6 @@ $small_contents = [
   { id: 'kusogame', name: 'クソゲー', port: 5501, selected: false }
 ]
 
-
 ##
 # Server program
 class App < Sinatra::Base

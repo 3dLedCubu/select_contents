@@ -1,3 +1,12 @@
+.title {
+    font-family: arial, sans-serif;
+    color: #fff;
+    text-shadow:  2px  2px 10px rgb(7, 57, 221),
+    -2px  2px 10px rgb(7, 57, 221) ,
+     2px -2px 10px rgb(7, 57, 221) ,
+    -2px -2px 10px rgb(7, 57, 221);
+  }
+
 .large_margin
 {
     text-align: center;
@@ -7,7 +16,6 @@
 .small_margin
 {
     text-align: center;
-    margin-bottom: 10px;
     margin-right: 30px;
     margin-left: 30px;
 }
@@ -28,6 +36,21 @@
     vertical-align: middle;
 	display: table-cell;
     border-radius: 20px;
+}
+
+.circle_icon
+{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    display: table-cell;
+    -webkit-border-radius: 100px;  
+    -moz-border-radius: 100px; 
+    border-radius: 100px;
 }
 
 .selected
