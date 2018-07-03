@@ -12,10 +12,38 @@
     %script{ src: "/js/index.js" }
     %title=title
   %body
-    %table
-      %tr
-        - @contents.each do |c|
-          %td
-            %div.icon
-              %span{ id: c[:id], class: 'unselected', onclick: "click_icon(\'#{c[:id]}\');" }
-                #{c[:name]}
+    %center
+      %h1 体験したいコンテンツのボタンを選択してください
+      %table
+        %tr
+          - @large_contents.each do |c|
+            %td{ rowspan: 2}
+              %div.large_margin
+                %span{ id: c[:id], class: 'large_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
+                  %img{height: "150", src: "assets/favicon.jpg", width: "150"}
+                  %br
+                  %b
+                    #{c[:name]}
+                  %br
+                  あああああああああああああああああああああああああああああああああああああああああ
+          -i = 0
+          - @small_contents.each do |c|
+            -if i > 0
+              %tr
+                %td
+                  %div.small_margin
+                    %span{ id: c[:id], class: 'small_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
+                      %b
+                        #{c[:name]}
+                      %br
+                      %img{height: "100", src: "assets/favicon.jpg", width: "100"}
+            -else
+              %td
+                %div.small_margin
+                  %span{ id: c[:id], class: 'small_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
+                    %b
+                      #{c[:name]}
+                    %br
+                    %img{height: "100", src: "assets/favicon.jpg", width: "100"}
+                    -i = i+1
+              

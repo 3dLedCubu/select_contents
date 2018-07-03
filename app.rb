@@ -4,15 +4,26 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
 require 'socket'
-#require 'Win32API'
 
-$contents = [
+# $contents = [
+#   { id: 'lego', name: 'ブロック', port: 5101, selected: false },
+#   { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
+#   { id: 'paint', name: 'おえかき', port: 5301, selected: false },
+#   { id: 'camera', name: 'カメラ', port: 5401, selected: false },
+#   { id: 'kusogame', name: 'クソゲー', port: 5501, selected: false }
+# ]
+
+$large_contents = [
   { id: 'lego', name: 'ブロック', port: 5101, selected: false },
-  { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
   { id: 'paint', name: 'おえかき', port: 5301, selected: false },
-  { id: 'camera', name: 'カメラ', port: 5401, selected: false },
-  { id: 'kusogeme', name: 'バカゲー', port: 5501, selected: false }
+  { id: 'camera', name: 'カメラ', port: 5401, selected: false }
 ]
+
+$small_contents = [
+  { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
+  { id: 'kusogame', name: 'クソゲー', port: 5501, selected: false }
+]
+
 
 ##
 # Server program
@@ -39,7 +50,9 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    @contents = $contents
+    #@contents = $contents
+    @large_contents = $large_contents
+    @small_contents = $small_contents
     haml :index, locals: { title: '3D LED' }
   end
 
