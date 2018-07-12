@@ -5,24 +5,28 @@ require 'sinatra/reloader'
 require 'json'
 require 'socket'
 
-# $contents = [
-#   { id: 'lego', name: 'ブロック', port: 5101, selected: false },
-#   { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
-#   { id: 'paint', name: 'おえかき', port: 5301, selected: false },
-#   { id: 'camera', name: 'カメラ', port: 5401, selected: false },
-#   { id: 'kusogame', name: 'クソゲー', port: 5501, selected: false }
-# ]
+$contents = [
+  { id: 'lego', name: 'ブロック', port: 5000, selected: false },
+  { id: 'paint', name: 'おえかき', port: 5302, selected: false },
+  { id: 'camera', name: 'カメラ', port: 5402, selected: false },
+  { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
+  { id: 'light_off', name: '消灯', port: 5501, selected: false }
+]
 
 $large_contents = [
-  { id: 'lego', name: 'ブロック', port: 5101, selected: false },
-  { id: 'paint', name: 'おえかき', port: 5301, selected: false },
-  { id: 'camera', name: 'カメラ', port: 5401, selected: false }
+  { id: 'lego', name: 'ブロック', port: 5000, selected: false },
+  { id: 'paint', name: 'おえかき', port: 5302, selected: false },
+  { id: 'camera', name: 'カメラ', port: 5402, selected: false }
 ]
 
 $small_contents = [
-  { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
-  { id: 'kusogame', name: 'クソゲー', port: 5501, selected: false }
+  { id: 'screen_saver', name: 'デモ', port: 5201, selected: false }
 ]
+
+$lowerRight_contents = [
+  { id: 'light_off', name: '消灯', port: 5501, selected: false }
+]
+
 
 ##
 # Server program
@@ -52,18 +56,19 @@ class App < Sinatra::Base
     #@contents = $contents
     @large_contents = $large_contents
     @small_contents = $small_contents
+    @lowerRight_contents = $lowerRight_contents
     haml :index, locals: { title: '3D LED' }
   end
 
   post '/select' do
     id = params['id']
     $contents.each do |c|
-      # c[:selected] = (c[:id] == id)
-      if(c[:selected]== false && c[:id] == id)
-        c[:selected] = true
-      else
-        c[:selected] = false
-      end
+      c[:selected] = (c[:id] == id)
+      #if(c[:selected]== false && c[:id] == id)
+      #  c[:selected] = true
+      #else
+      #  c[:selected] = false
+      #end
     end
     p ({ select: $contents }).to_json 
   end
