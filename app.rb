@@ -7,16 +7,16 @@ require 'socket'
 
 $contents = [
   { id: 'lego', name: 'ブロック', port: 5000, selected: false },
-  { id: 'paint', name: 'おえかき', port: 5302, selected: false },
-  { id: 'camera', name: 'カメラ', port: 5402, selected: false },
+  { id: 'paint', name: 'おえかき', port: 5301, selected: false },
+  { id: 'camera', name: 'カメラ', port: 5401, selected: false },
   { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
   { id: 'light_off', name: '消灯', port: 5501, selected: false }
 ]
 
 $large_contents = [
   { id: 'lego', name: 'ブロック', port: 5000, selected: false },
-  { id: 'paint', name: 'おえかき', port: 5302, selected: false },
-  { id: 'camera', name: 'カメラ', port: 5402, selected: false }
+  { id: 'paint', name: 'おえかき', port: 5301, selected: false },
+  { id: 'camera', name: 'カメラ', port: 5401, selected: false }
 ]
 
 $small_contents = [
