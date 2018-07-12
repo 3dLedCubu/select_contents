@@ -22,7 +22,8 @@
             %td{ rowspan: 2}
               %div.large_margin
                 %span{ id: c[:id], class: 'large_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
-                  %img{height: "150", src: "assets/favicon.jpg", width: "150"}
+                  %img{class: 'unselected_image',height: "150", src: "assets/favicon.jpg", width: "150"}
+                  %img{class: 'selected_image', height: "150", src: "assets/koupen.jpeg", width: "150"}
                   %br
                   %b
                     #{c[:name]}
@@ -38,7 +39,8 @@
                       %b
                         #{c[:name]}
                       %br
-                      %img{height: "100", src: "assets/favicon.jpg", width: "100"}
+                      %img{class: 'unselected_image',height: "100", src: "assets/favicon.jpg", width: "100"}
+                      %img{class: 'selected_image', height: "100", src: "assets/koupen.jpeg", width: "100"}
             -else
               %td
                 %div.small_margin
@@ -46,10 +48,11 @@
                     %b
                       #{c[:name]}
                     %br
-                    %img{height: "100", src: "assets/favicon.jpg", width: "100"}
+                    %img{class: 'unselected_image',height: "100", src: "assets/favicon.jpg", width: "100"}
+                    %img{class: 'selected_image', height: "100", src: "assets/koupen.jpeg", width: "100"}
                     -i = i+1
       %table
         %h1
-          - @lowerRight_contents.each do |c|
+          - @lower_right_contents.each do |c|
             %span{ id: c[:id], class: 'circle_icon unselected',  onclick: "click_icon(\'#{c[:id]}\');" }
               　

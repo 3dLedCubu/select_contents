@@ -5,14 +5,6 @@ require 'sinatra/reloader'
 require 'json'
 require 'socket'
 
-$contents = [
-  { id: 'lego', name: 'ブロック', port: 5000, selected: false },
-  { id: 'paint', name: 'おえかき', port: 5301, selected: false },
-  { id: 'camera', name: 'カメラ', port: 5401, selected: false },
-  { id: 'screen_saver', name: 'デモ', port: 5201, selected: false },
-  { id: 'light_off', name: '消灯', port: 5501, selected: false }
-]
-
 $large_contents = [
   { id: 'lego', name: 'ブロック', port: 5000, selected: false },
   { id: 'paint', name: 'おえかき', port: 5301, selected: false },
@@ -23,9 +15,11 @@ $small_contents = [
   { id: 'screen_saver', name: 'デモ', port: 5201, selected: false }
 ]
 
-$lowerRight_contents = [
+$lower_right_contents = [
   { id: 'light_off', name: '消灯', port: 5501, selected: false }
 ]
+
+$contents = $large_contents + $small_contents + $lower_right_contents
 
 
 ##
@@ -56,7 +50,7 @@ class App < Sinatra::Base
     #@contents = $contents
     @large_contents = $large_contents
     @small_contents = $small_contents
-    @lowerRight_contents = $lowerRight_contents
+    @lower_right_contents = $lower_right_contents
     haml :index, locals: { title: '3D LED' }
   end
 
@@ -71,5 +65,10 @@ class App < Sinatra::Base
       #end
     end
     p ({ select: $contents }).to_json 
+  end
+
+  post '/api/audio' do
+    params = JSON.parse request.body.read
+    volume = params['volume']
   end
 end
