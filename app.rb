@@ -5,6 +5,9 @@ require 'sinatra/reloader'
 require 'json'
 require 'socket'
 
+require 'net/http'
+require 'uri'
+
 $large_contents = [
   { id: 'lego', name: 'ブロック', port: 5000, selected: false },
   { id: 'paint', name: 'おえかき', port: 5301, selected: false },
@@ -56,13 +59,28 @@ class App < Sinatra::Base
 
   post '/select' do
     id = params['id']
+
+    # $contents.each do |c|
+    #   if (c[:id] == id)
+    #     port = c[:port] 
+    #   end 
+    # end
+
+    # URL = 'http://192.168.0.20:'+port+'/api/audio'
+
+    # uri = URI.parse(URL)
+    # https = Net::HTTP.new(uri.host, uri.port)
+     
+    # https.use_ssl = true # HTTPSでよろしく
+    # req = Net::HTTP::Post.new(uri.request_uri)
+     
+    # req['Content-Type'] = 'application/json' # httpリクエストヘッダの追加
+    # vol({"volume":100}).to_json
+    # req.body = vol # リクエストボデーにJSONをセット
+
+
     $contents.each do |c|
-      c[:selected] = (c[:id] == id)
-      #if(c[:selected]== false && c[:id] == id)
-      #  c[:selected] = true
-      #else
-      #  c[:selected] = false
-      #end
+      c[:selected] = (c[:id] == id)  
     end
     p ({ select: $contents }).to_json 
   end
