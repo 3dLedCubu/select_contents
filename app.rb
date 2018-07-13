@@ -13,6 +13,11 @@ $large_contents = [
   { id: 'paint', name: 'おえかき', port: 5301, selected: false },
   { id: 'camera', name: 'カメラ', port: 5401, selected: false }
 ]
+# $large_contents = [
+#   { id: 'lego', name: 'ブロック', port: 5000, selected: false },
+#   { id: 'paint', name: 'おえかき', port: 5000, selected: false },
+#   { id: 'camera', name: 'カメラ', port: 5000, selected: false }
+# ]
 
 $small_contents = [
   { id: 'screen_saver', name: 'デモ', port: 5201, selected: false }
@@ -60,24 +65,13 @@ class App < Sinatra::Base
   post '/select' do
     id = params['id']
 
-    # $contents.each do |c|
-    #   if (c[:id] == id)
-    #     port = c[:port] 
-    #   end 
-    # end
-
-    # URL = 'http://192.168.0.20:'+port+'/api/audio'
-
-    # uri = URI.parse(URL)
-    # https = Net::HTTP.new(uri.host, uri.port)
-     
-    # https.use_ssl = true # HTTPSでよろしく
-    # req = Net::HTTP::Post.new(uri.request_uri)
-     
-    # req['Content-Type'] = 'application/json' # httpリクエストヘッダの追加
-    # vol({"volume":100}).to_json
-    # req.body = vol # リクエストボデーにJSONをセット
-
+    $large_contents.each do |c|
+      if (c[:id] == id)
+        select_volume(c[:port],100)
+      else
+        select_volume(c[:port],0)
+      end
+    end
 
     $contents.each do |c|
       c[:selected] = (c[:id] == id)  
@@ -88,5 +82,19 @@ class App < Sinatra::Base
   post '/api/audio' do
     params = JSON.parse request.body.read
     volume = params['volume']
+  end
+
+  def select_volume(port, volume)
+    url = 'http://192.168.0.20:'+port.to_s+'/api/audio'
+    #url = 'http://localhost:'+port.to_s+'/api/audio'
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = false
+    req = Net::HTTP::Post.new(uri.request_uri)
+   
+    req['Content-Type'] = 'application/json' # httpリクエストヘッダの追加
+    vol = ({"volume":volume}).to_json
+    req.body = vol # リクエストボディーにJSONをセット
+    return http.request(req)
   end
 end
