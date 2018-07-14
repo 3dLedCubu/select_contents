@@ -10,8 +10,8 @@ require 'uri'
 
 $large_contents = [
   { id: 'lego', name: 'ブロック', port: 5000, selected: false },
-  { id: 'paint', name: 'おえかき', port: 5301, selected: false },
-  { id: 'camera', name: 'カメラ', port: 5401, selected: false }
+  { id: 'paint', name: 'おえかき', port: 5302, selected: false },
+  { id: 'camera', name: 'カメラ', port: 5402, selected: false }
 ]
 # $large_contents = [
 #   { id: 'lego', name: 'ブロック', port: 5000, selected: false },
