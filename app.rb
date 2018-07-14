@@ -9,9 +9,9 @@ require 'net/http'
 require 'uri'
 
 $large_contents = [
-  { id: 'lego', name: 'ブロック', port: 5000, selected: false },
-  { id: 'paint', name: 'おえかき', port: 5302, selected: false },
-  { id: 'camera', name: 'カメラ', port: 5402, selected: false }
+  { id: 'lego', name: 'ブロック', port: 5000, selected: false, unselect_img: 'assets/block1.png', select_img: 'assets/block2.png' },
+  { id: 'paint', name: 'おえかき', port: 5302, selected: false, unselect_img: 'assets/paint1.png', select_img: 'assets/paint2.png' },
+  { id: 'camera', name: 'カメラ', port: 5402, selected: false, unselect_img: 'assets/camera1.png', select_img: 'assets/camera2.png' }
 ]
 # $large_contents = [
 #   { id: 'lego', name: 'ブロック', port: 5000, selected: false },
@@ -20,11 +20,11 @@ $large_contents = [
 # ]
 
 $small_contents = [
-  { id: 'screen_saver', name: 'デモ', port: 5201, selected: false }
+  { id: 'screen_saver', name: 'デモ', port: 5201, selected: false, unselect_img: 'assets/demo1.png', select_img: 'assets/demo2.png'  }
 ]
 
 $lower_right_contents = [
-  { id: 'light_off', name: '消灯', port: 5501, selected: false }
+  { id: 'light_off', name: '消灯', port: 5501, selected: false, unselect_img: 'assets/off1.png', select_img: 'assets/off2.png'  }
 ]
 
 $contents = $large_contents + $small_contents + $lower_right_contents
@@ -65,13 +65,13 @@ class App < Sinatra::Base
   post '/select' do
     id = params['id']
 
-    $large_contents.each do |c|
-      if (c[:id] == id)
-        select_volume(c[:port],100)
-      else
-        select_volume(c[:port],0)
-      end
-    end
+    # $large_contents.each do |c|
+    #   if (c[:id] == id)
+    #     select_volume(c[:port],100)
+    #   else
+    #     select_volume(c[:port],0)
+    #   end
+    # end
 
     $contents.each do |c|
       c[:selected] = (c[:id] == id)  

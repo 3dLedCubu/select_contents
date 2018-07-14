@@ -12,47 +12,29 @@
     %script{ src: "/js/index.js" }
     %title=title
   %body
-    %center
-      %h1
-        %div.title 
-          体験したいコンテンツのボタンを選択してください
-      %table
-        %tr
+    %div.container
+      %div.title_container 
+        %span.title
+          %h1
+            体験したいコンテンツのボタンを選択
+      %div.contents_container
+        %div.large_contents_container
           - @large_contents.each do |c|
-            %td{ rowspan: 2}
-              %div.large_margin
-                %span{ id: c[:id], class: 'large_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
-                  %img{class: 'unselected_image',height: "150", src: "assets/favicon.jpg", width: "150"}
-                  %img{class: 'selected_image', height: "150", src: "assets/koupen.jpeg", width: "150"}
-                  %br
-                  %b
-                    #{c[:name]}
-                  %br
-                  あああああああああああああああああああああああああああああああああああああああああ
-          -i = 0
+            %div
+              %span{ id: c[:id], class: 'large_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
+                %img{class: 'unselected_image', src: c[:unselect_img]}
+                %img{class: 'selected_image', src: c[:select_img]}
+        %div.small_contents_container
           - @small_contents.each do |c|
-            -if i > 0
-              %tr
-                %td
-                  %div.small_margin
-                    %span{ id: c[:id], class: 'small_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
-                      %b
-                        #{c[:name]}
-                      %br
-                      %img{class: 'unselected_image',height: "100", src: "assets/favicon.jpg", width: "100"}
-                      %img{class: 'selected_image', height: "100", src: "assets/koupen.jpeg", width: "100"}
-            -else
-              %td
-                %div.small_margin
-                  %span{ id: c[:id], class: 'small_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
-                    %b
-                      #{c[:name]}
-                    %br
-                    %img{class: 'unselected_image',height: "100", src: "assets/favicon.jpg", width: "100"}
-                    %img{class: 'selected_image', height: "100", src: "assets/koupen.jpeg", width: "100"}
-                    -i = i+1
-      %table
-        %h1
+            %div
+              %span{ id: c[:id], class: 'small_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
+                %img{class: 'unselected_image', src: c[:unselect_img]}
+                %img{class: 'selected_image', src: c[:select_img]}
+        %div.lower_right_contents_container
           - @lower_right_contents.each do |c|
-            %span{ id: c[:id], class: 'circle_icon unselected',  onclick: "click_icon(\'#{c[:id]}\');" }
-              　
+            %div
+              %span{ id: c[:id], class: 'circle_icon unselected',  onclick: "click_icon(\'#{c[:id]}\');" }
+                %img{class: 'unselected_image', src: c[:unselect_img]}
+                %img{class: 'selected_image', src: c[:select_img]}
+
+

@@ -1,38 +1,73 @@
+.container{
+    width: 2736px;
+    height: 1824px;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    background-image: url(../assets/background.png);
+}
+
+.title_container{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
 .title {
     font-family: arial, sans-serif;
+    font-size: 4em;
     color: #fff;
+    text-align: center;
     text-shadow:  2px  2px 10px rgb(7, 57, 221),
     -2px  2px 10px rgb(7, 57, 221) ,
      2px -2px 10px rgb(7, 57, 221) ,
     -2px -2px 10px rgb(7, 57, 221);
   }
 
-.large_margin
-{
-    text-align: center;
-    margin: 10px;
+.contents_container {
+    display: flex;
+    justify-content: space-between;
+
+    position: absolute;
+    top: 514px;
+    left: 171px;
+    right: 172px;
+    bottom: 0px;
+ }
+
+.large_contents_container{
+    display: flex;
+    justify-content: space-between;
+
+    width: 1879px;
 }
 
-.small_margin
-{
-    text-align: center;
-    margin-right: 30px;
-    margin-left: 30px;
+.small_contents_container{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.lower_right_contents_container{
+    position: absolute;
+    bottom: 314px;
+    right: 0px;
 }
 
 .large_icon
 {
-    width: 200px;
-    height: 400px;
-    vertical-align: middle;
-    display: table-cell;
+    width: 561px;
+    height: 855px;
     border-radius: 20px;
 }
 
 .small_icon
 {
-    width: 150px;
-    height: 150px;
+    width: 342px;
+    height: 342px;
     vertical-align: middle;
 	display: table-cell;
     border-radius: 20px;
@@ -40,39 +75,26 @@
 
 .circle_icon
 {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-
-    width: 50px;
-    height: 50px;
-    vertical-align: middle;
-    display: table-cell;
-    -webkit-border-radius: 100px;  
-    -moz-border-radius: 100px; 
-    border-radius: 100px;
+    width: 257px;
+    height: 257px;
 }
 
 .selected
 {
-    border: solid 10px #AFA;
-    background-color: #DFD;
-    color: #707;
 }
 
 .unselected
 {
-    border: solid 5px rgb(238, 95, 0);
-    background-color: rgb(50, 50, 50);
-    color: rgb(255, 255, 255);
 }
 
 .unselected > img.selected_image
 {
     display: none;
+    object-fit: fill;
 }
 
 .selected > img.unselected_image
 {
     display: none;
+    object-fit: fill;
 }
