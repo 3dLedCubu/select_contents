@@ -6,26 +6,8 @@
     top: 0px;
     left: 0px;
 
-    background-image: url(../assets/background.png);
+    background-image: url(../assets/Kit_BG.png);
 }
-
-.title_container{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-}
-
-.title {
-    font-family: arial, sans-serif;
-    font-size: 4em;
-    color: #fff;
-    text-align: center;
-    text-shadow:  2px  2px 10px rgb(7, 57, 221),
-    -2px  2px 10px rgb(7, 57, 221) ,
-     2px -2px 10px rgb(7, 57, 221) ,
-    -2px -2px 10px rgb(7, 57, 221);
-  }
 
 .contents_container {
     display: flex;
@@ -51,7 +33,7 @@
 
 }
 
-.lower_right_contents_container{
+.light_off_contents_container{
     position: absolute;
     bottom: 314px;
     right: 0px;
