@@ -47,6 +47,9 @@ class App < Sinatra::Base
     return unless content[:selected]
     UDPSocket.open do |udp|
       sockaddr = Socket.pack_sockaddr_in(9001, '192.168.0.10')
+      if(content[:id] == 'light_off')
+        d = ([0]*8192).pack('C*')
+      end
       udp.send(d, 0, sockaddr)
     end
   end
@@ -95,7 +98,7 @@ class App < Sinatra::Base
     req = Net::HTTP::Post.new(uri.request_uri)
    
     req['Content-Type'] = 'application/json' # httpリクエストヘッダの追加
-    vol = ({"volume":volume}).to_json
+    vol = ({'volume':volume}).to_json
     req.body = vol # リクエストボディーにJSONをセット
     return http.request(req)
   end
