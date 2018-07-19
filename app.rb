@@ -24,7 +24,7 @@ $small_contents = [
 ]
 
 $light_off_contents = [
-  { id: 'light_off', name: '消灯', selected: false, unselect_img: 'assets/Kit_btn_LED_On.png', select_img: 'assets/Kit_btn_LED_Off.png'  }
+  { id: 'light_off', name: '消灯', selected: true, unselect_img: 'assets/Kit_btn_LED_On.png', select_img: 'assets/Kit_btn_LED_Off.png'  }
 ]
 
 
