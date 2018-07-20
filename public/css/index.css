@@ -1,82 +1,83 @@
-.container{
-    width: 2736px;
-    height: 1824px;
+html, body {
+    margin: 0;
+    overflow: hidden;
+}
 
-    position: absolute;
-    top: 0px;
-    left: 0px;
+.bg {
+    width: 100vw;
+    height: 100vh;
 
     background-image: url(../assets/Kit_BG.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.container {
+    height: 67vw;
+    max-width: 150vh;
+    max-height: 100vh;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title_container {
+    height: 28%;
 }
 
 .contents_container {
+    width: 87.4%;
+    height: 72%;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    position: relative;
+
     display: flex;
     justify-content: space-between;
+}
+
+.large_contents_container {
+    width: 78.5%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.small_contents_container {
+    width: 14.2%;
+}
+
+.light_off_contents_container {
+    width: 10.7%;
 
     position: absolute;
-    top: 514px;
-    left: 171px;
-    right: 172px;
-    bottom: 0px;
- }
-
-.large_contents_container{
-    display: flex;
-    justify-content: space-between;
-
-    width: 1879px;
+    bottom: 24%;
+    right: 0;
 }
 
-.small_contents_container{
-    display: flex;
-    justify-content: space-between;
-
+.large_icon {
+    width: 29.9%;
 }
 
-.light_off_contents_container{
-    position: absolute;
-    bottom: 314px;
-    right: 0px;
+.small_icon {
+    width: 100%;
 }
 
-.large_icon
-{
-    width: 561px;
-    height: 855px;
-    border-radius: 20px;
+.circle_icon {
+    width: 100%;
 }
 
-.small_icon
-{
-    width: 342px;
-    height: 342px;
-    vertical-align: middle;
-	display: table-cell;
-    border-radius: 20px;
+.icon > img {
+    width: 100%;
 }
 
-.circle_icon
-{
-    width: 257px;
-    height: 257px;
-}
-
-.selected
-{
-}
-
-.unselected
-{
-}
-
-.unselected > img.selected_image
-{
+.unselected > img.selected_image {
     display: none;
-    object-fit: fill;
 }
 
-.selected > img.unselected_image
-{
+.selected > img.unselected_image {
     display: none;
-    object-fit: fill;
 }
