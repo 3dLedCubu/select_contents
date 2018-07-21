@@ -24,7 +24,7 @@ $small_contents = [
 ]
 
 $light_off_contents = [
-  { id: 'light_off', name: '消灯', selected: true, unselect_img: 'assets/Kit_btn_LED_On.png', select_img: 'assets/Kit_btn_LED_Off.png'  }
+  { id: 'light_off', name: '消灯', port: 5001, selected: true, unselect_img: 'assets/Kit_btn_LED_On.png', select_img: 'assets/Kit_btn_LED_Off.png'  }
 ]
 
 $contents = $large_contents + $small_contents + $light_off_contents
@@ -37,25 +37,44 @@ class App < Sinatra::Base
   enable :sessions
   set :bind, '0.0.0.0' # 外部アクセス可
 
+  # for test
+  def recv_image_dummy
+    d = UDPSocket.open do |udps|
+      udps.bind('0.0.0.0', 9001)
+      udps.recv(8192)
+    end
+    puts 'received'
+  end
+
   def flow(content)
-    if(content[:id] == 'light_off')
-      d = ([0]*8192).pack('C*')
-    else
-      d = UDPSocket.open do |udps|
-        udps.bind('0.0.0.0', content[:port])
-        udps.recv(8192)
+    UDPSocket.open do |recv_sock|
+      recv_sock.bind('0.0.0.0', content[:port])
+      UDPSocket.open do |send_sock|
+        # for test
+        # send_sock_addr = Socket.pack_sockaddr_in(9001, '192.168.0.10')
+        send_sock_addr = Socket.pack_sockaddr_in(9001, '127.0.0.1')
+        loop do
+          d = recv_sock.recv(8192)
+          next unless content[:selected]
+          send_sock.send(d, 0, send_sock_addr)
+        end
       end
     end
-    return unless content[:selected]
+  end
+
+  def send_light_off
+    d = ([0]*8192).pack('C*')
     UDPSocket.open do |udp|
-      sockaddr = Socket.pack_sockaddr_in(9001, '192.168.0.10')
+      sockaddr = Socket.pack_sockaddr_in(5001, '127.0.0.1')
       udp.send(d, 0, sockaddr)
     end
   end
 
   def initialize
     super
-    $contents.each { |c| Thread.new { loop { flow(c) } } }
+    $contents.each { |c| Thread.new { flow(c) } }
+    # for test
+    Thread.new { loop { recv_image_dummy() } }
   end
 
   get '/' do
@@ -64,7 +83,6 @@ class App < Sinatra::Base
     @light_off_contents = $light_off_contents
     haml :index, locals: { title: '3D LED' }
   end
-
 
   post '/select' do
     id = params['id']
@@ -77,12 +95,17 @@ class App < Sinatra::Base
     #   end
     # end
 
+    if(id == 'light_off')
+      send_light_off
+    end
+
     $contents.each do |c|
       c[:selected] = (c[:id] == id)  
     end
     p ({ select: $contents }).to_json 
   end
 
+  # for test
   post '/api/audio' do
     params = JSON.parse request.body.read
     volume = params['volume']
