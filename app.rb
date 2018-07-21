@@ -38,16 +38,17 @@ class App < Sinatra::Base
   set :bind, '0.0.0.0' # 外部アクセス可
 
   def flow(content)
-    d = UDPSocket.open do |udps|
-      udps.bind('0.0.0.0', content[:port])
-      udps.recv(8192)
+    if(content[:id] == 'light_off')
+      d = ([0]*8192).pack('C*')
+    else
+      d = UDPSocket.open do |udps|
+        udps.bind('0.0.0.0', content[:port])
+        udps.recv(8192)
+      end
     end
     return unless content[:selected]
     UDPSocket.open do |udp|
       sockaddr = Socket.pack_sockaddr_in(9001, '192.168.0.10')
-      if(content[:id] == 'light_off')
-        d = ([0]*8192).pack('C*')
-      end
       udp.send(d, 0, sockaddr)
     end
   end
