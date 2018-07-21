@@ -9,9 +9,9 @@ require 'net/http'
 require 'uri'
 
 $large_contents = [
-  { id: 'lego', name: 'ブロック', port: 5101, sound_port: 5000, selected: false, unselect_img: 'assets/block1.png', select_img: 'assets/block2.png' },
-  { id: 'paint', name: 'おえかき', port: 5301, sound_port: 5302, selected: false, unselect_img: 'assets/paint1.png', select_img: 'assets/paint2.png' },
-  { id: 'camera', name: 'カメラ', port: 5401, sound_port: 5402, selected: false, unselect_img: 'assets/camera1.png', select_img: 'assets/camera2.png' }
+  { id: 'lego', name: 'ブロック', port: 5101, sound_port: 5000, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
+  { id: 'paint', name: 'おえかき', port: 5301, sound_port: 5302, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
+  { id: 'camera', name: 'カメラ', port: 5401, sound_port: 5402, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
 ]
 # $large_contents = [
 #   { id: 'lego', name: 'ブロック', sound_port: 5000, selected: false, unselect_img: 'assets/block1.png', select_img: 'assets/block2.png'  },
