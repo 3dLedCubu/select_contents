@@ -27,9 +27,7 @@ $light_off_contents = [
   { id: 'light_off', name: '消灯', selected: true, unselect_img: 'assets/Kit_btn_LED_On.png', select_img: 'assets/Kit_btn_LED_Off.png'  }
 ]
 
-
 $contents = $large_contents + $small_contents + $light_off_contents
-$contents_except_light_off = $large_contents + $small_contents
 
 ##
 
@@ -56,7 +54,7 @@ class App < Sinatra::Base
 
   def initialize
     super
-    $contents_except_light_off.each { |c| Thread.new { loop { flow(c) } } }
+    $contents.each { |c| Thread.new { loop { flow(c) } } }
   end
 
   get '/' do
