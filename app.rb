@@ -95,13 +95,14 @@ class App < Sinatra::Base
     #   end
     # end
 
+    $contents.each do |c|
+      c[:selected] = (c[:id] == id)  
+    end
+
     if(id == 'light_off')
       send_light_off
     end
 
-    $contents.each do |c|
-      c[:selected] = (c[:id] == id)  
-    end
     p ({ select: $contents }).to_json 
   end
 
