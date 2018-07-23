@@ -41,6 +41,8 @@ class App < Sinatra::Base
   end
 
   get '/' do
+    @led_controller.light_off
+
     @large_contents = $large_contents
     @small_contents = $small_contents
     @light_off_contents = $light_off_contents
