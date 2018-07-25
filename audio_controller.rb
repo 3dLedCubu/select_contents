@@ -7,7 +7,7 @@ class AudioController
 
   def switch(selected_id)
     @large_contents.each do |c|
-      if (c[:selected_id] == selected_id)
+      if (c[:id] == selected_id)
         @pool.process { send_volume(c[:sound_port], 100) }
       else
         @pool.process { send_volume(c[:sound_port], 0) }
