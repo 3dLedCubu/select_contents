@@ -1,4 +1,5 @@
 require 'socket'
+require 'timeout'
 
 class LEDMapTransferFactory
   def initialize(queue)
@@ -22,7 +23,16 @@ class LEDMapTransferFactory
   def transfer_from_sock(content)
     UDPSocket.open do |recv_sock|
       recv_sock.bind('0.0.0.0', content[:port])
-      transfer content, lambda { recv_sock.recv(8192) }
+      transfer content, lambda {
+        begin
+          Timeout::timeout(1) do
+            recv_sock.recv(8192)
+          end
+        rescue Timeout::Error
+          # to prevent zombie image
+          ([0]*8192).pack('C*')
+        end
+        }
     end
   end
 
