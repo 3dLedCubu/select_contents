@@ -1,19 +1,12 @@
 require './led_map_transfer_factory'
 
 class LEDController
-  def initialize(contents)
-    @contents = contents
+  def initialize(host, port)
     @queue = Queue.new
-    factory = LEDMapTransferFactory.new @queue
-    contents.each { |c| Thread.new { factory.new_instance(c).call } }
+    factory = LEDMapTransferFactory.new @queue, host, port
+    Thread.new { factory.new_instance(c).call } 
     # for test
     # Thread.new { loop { recv_map_dummy() } }
-  end
-
-  def switch(id)
-    @contents.each do |c|
-      c[:selected] = (c[:id] == id)  
-    end
   end
 
   def light_off

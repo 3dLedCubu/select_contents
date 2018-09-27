@@ -1,39 +1,22 @@
 require 'socket'
 
 class LEDMapTransferFactory
-  def initialize(queue)
+  def initialize(queue, host, port)
     @queue = queue
+    @host = host
+    @port = port
   end
 
   def new_instance(content)
-    if(content[:port] != nil)
-      # for test
-      # puts "create sock: " + content[:id]
-      return lambda { transfer_from_sock(content) }
-    else
-      # for test
-      # puts "create queue: " + content[:id]
-      return lambda { transfer_from_queue(content) }
-    end
+    return lambda { transfer content, lambda { @queue.pop } }
   end
 
   private
 
-  def transfer_from_sock(content)
-    UDPSocket.open do |recv_sock|
-      recv_sock.bind('0.0.0.0', content[:port])
-      transfer content, lambda { recv_sock.recv(8192) }
-    end
-  end
-
-  def transfer_from_queue(content)
-    transfer content, lambda { @queue.pop }
-  end
-
   def transfer(content, producer)
     UDPSocket.open do |send_sock|
       # for test
-      send_sock_addr = Socket.pack_sockaddr_in(9001, '192.168.0.10')
+      send_sock_addr = Socket.pack_sockaddr_in(@port, @host)
       # send_sock_addr = Socket.pack_sockaddr_in(9001, '127.0.0.1')
       while d = producer.call
         next unless content[:selected]
