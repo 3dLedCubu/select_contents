@@ -94,3 +94,7 @@ html, body {
 .selected > img.unselected_image {
     display: none;
 }
+
+.info {
+    height: 1pt;
+}

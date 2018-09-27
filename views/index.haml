@@ -21,11 +21,13 @@
               %div{ id: c[:id], class: 'icon large_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
                 %img{class: 'unselected_image', src: c[:unselect_img]}
                 %img{class: 'selected_image', src: c[:select_img]}
+                %img{id: c[:id] + '_status', class: 'info', src: "assets/error.png"}
           %div.small_contents_container
             - @small_contents.each do |c|
               %div{ id: c[:id], class: 'icon small_icon unselected', onclick: "click_icon(\'#{c[:id]}\');" }
                 %img{class: 'unselected_image', src: c[:unselect_img]}
                 %img{class: 'selected_image', src: c[:select_img]}
+                %img{id: c[:id] + '_status', class: 'info', src: "assets/error.png"}
           %div.light_off_contents_container
             - @light_off_contents.each do |c|
               %div{ id: c[:id], class: 'icon circle_icon selected',  onclick: "click_icon(\'#{c[:id]}\');" }
