@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+Encoding.default_external = 'UTF-8'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'json'

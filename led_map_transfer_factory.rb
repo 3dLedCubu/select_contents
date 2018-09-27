@@ -1,4 +1,5 @@
 require 'socket'
+require 'timeout'
 
 class LEDMapTransferFactory
   def initialize(queue, host, port)
