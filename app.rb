@@ -12,13 +12,13 @@ require './led_controller'
 require './content_controller'
 
 $large_contents = [
-  { id: 'lego', target: 'localhost:3002', name: 'ブロック', enable:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
-  { id: 'paint', target: 'localhost:3002', name: 'おえかき',enable:false, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
-  { id: 'camera', target: 'localhost:3002', name: 'カメラ', enable:false, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
+  { id: 'lego', target: 'block-detector.local:5001', name: 'ブロック', enable:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
+  { id: 'paint', target: 'painting.local:5001', name: 'おえかき',enable:false, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
+  { id: 'camera', target: 'hitokage.local:5001', name: 'カメラ', enable:false, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
 ]
 
 $small_contents = [
-  { id: 'screen_saver', target: 'localhost:3002', name: 'デモ', enable:false, selected: false, unselect_img: 'assets/Kit_btn_Demo_Off.png', select_img: 'assets/Kit_btn_Demo_On.png'  }
+  { id: 'screen_saver', target: 'mori-san.local:5002', name: 'デモ', enable:false, selected: false, unselect_img: 'assets/Kit_btn_Demo_Off.png', select_img: 'assets/Kit_btn_Demo_On.png'  }
 ]
 
 $light_off_contents = [
