@@ -12,7 +12,7 @@ require './led_controller'
 require './content_controller'
 
 $large_contents = [
-  { id: 'lego', target: 'block-detector.local:5001', name: 'ブロック', enable:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
+  { id: 'lego', target: 'block-identifier.local:5001', name: 'ブロック', enable:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
   { id: 'paint', target: 'painting.local:5001', name: 'おえかき',enable:false, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
   { id: 'camera', target: 'hitokage.local:5001', name: 'カメラ', enable:false, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
 ]
