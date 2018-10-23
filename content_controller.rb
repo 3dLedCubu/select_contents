@@ -1,6 +1,7 @@
 require 'timeout'
-require 'socket'
 require 'resolv-replace'
+
+require './my_utils'
 
 class ContentController
   def initialize(contents, led_controller, timeout=0.1)
@@ -23,14 +24,11 @@ class ContentController
   end
 
   def switch(selected_id)
+    @led_controller.light_off
     @contents.each do |c|
       next unless c[:pool].done? 
-      c[:selected] = (c[:id] == selected_id)  
-      if (c[:id] == selected_id)
-        @led_controller.light_off
-        next if (c[:id]) == 'light_off'
-      end
-      c[:pool].process { enable_content(c, false) }
+      next unless c[:enable]
+      c[:pool].process { enable_content(c, c[:id] == selected_id) }
     end
   end
 
@@ -39,7 +37,7 @@ class ContentController
   def enable_content(c, is_enable)
 
     begin
-      url = 'http://' + get_ip_from_hostname(c[:target]) +'/api/config'
+      url = 'http://' + MyUtils.get_ip_from_hostname(c[:target]) +'/api/config'
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, c[:port])
       http.use_ssl = false
@@ -61,7 +59,7 @@ class ContentController
 
   def update_status(c)
     begin
-      url = 'http://' + get_ip_from_hostname(c[:target]) +'/api/status'
+      url = 'http://' + MyUtils.get_ip_from_hostname(c[:target]) +'/api/status'
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, c[:port])
       http.use_ssl = false
@@ -74,17 +72,6 @@ class ContentController
     rescue => e
       p c[:target] + ": " + e.inspect
       c[:enable] = false
-    end
-  end
-
-  def get_ip_from_hostname(hostname)
-    Timeout::timeout(@timeout) do
-      info =  Socket.getaddrinfo(hostname, nil, Socket::AF_INET)
-      if info 
-        info[0][3]
-      else
-        hostname
-      end
     end
   end
 end
