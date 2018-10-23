@@ -33,7 +33,7 @@ class App < Sinatra::Base
   register Sinatra::Reloader
   enable :sessions
   set :bind, '0.0.0.0'# 外部アクセス可
-  set :port, 8081
+  set :port, 80
 
   def initialize
     super
