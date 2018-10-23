@@ -32,5 +32,5 @@ const getStatus = () =>{
 }
 
 $(document).ready(() => {
-    setInterval(getStatus, 1000); 
+    setInterval(getStatus, 2000); 
 });

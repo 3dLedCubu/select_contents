@@ -12,17 +12,17 @@ require './led_controller'
 require './content_controller'
 
 $large_contents = [
-  { id: 'lego', target: 'block-identifier.local', port:'5001', name: 'ブロック', enable:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
-  { id: 'paint', target: 'painting.local', port:'5001', name: 'おえかき',enable:false, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
-  { id: 'camera', target: 'hitokage.local', port:'5001', name: 'カメラ', enable:false, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
+  { id: 'lego', target: 'block-identifier.local', port:'5001', name: 'ブロック', is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
+  { id: 'paint', target: 'painting.local', port:'5001', name: 'おえかき',is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
+  { id: 'camera', target: 'hitokage.local', port:'5001', name: 'カメラ', is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
 ]
 
 $small_contents = [
-  { id: 'screen_saver', target: 'mori-san.local', port:'5001', name: 'デモ', enable:false, selected: false, unselect_img: 'assets/Kit_btn_Demo_Off.png', select_img: 'assets/Kit_btn_Demo_On.png'  }
+  { id: 'screen_saver', target: 'mori-san.local', port:'5001', name: 'デモ', is_alive:false, selected: false, unselect_img: 'assets/Kit_btn_Demo_Off.png', select_img: 'assets/Kit_btn_Demo_On.png'  }
 ]
 
 $light_off_contents = [
-  { id: 'light_off', name: '消灯', enable:true, selected: true, unselect_img: 'assets/Kit_btn_LED_On.png', select_img: 'assets/Kit_btn_LED_Off.png'  }
+  { id: 'light_off', name: '消灯', is_alive:true, selected: true, unselect_img: 'assets/Kit_btn_LED_On.png', select_img: 'assets/Kit_btn_LED_Off.png'  }
 ]
 
 $contents = $large_contents + $small_contents + $light_off_contents

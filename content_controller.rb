@@ -26,9 +26,10 @@ class ContentController
   def switch(selected_id)
     @led_controller.light_off
     @contents.each do |c|
+      c[:selected] = c[:id] == selected_id
       next unless c[:pool].done? 
-      next unless c[:enable]
-      c[:pool].process { enable_content(c, c[:id] == selected_id) }
+      next unless c[:is_alive]
+      c[:pool].process { enable_content(c, c[:selected]) }
     end
   end
 
@@ -49,15 +50,16 @@ class ContentController
 
       Timeout::timeout(@timeout) do
         res = http.request(req)
-        c[:enable] = res.code == "200"
+        c[:is_alive] = res.code == "200"
       end
     rescue => e
       p c[:target] + ": " + e.inspect
-      c[:enable] = false
+      c[:is_alive] = false
     end
   end
 
   def update_status(c)
+    p c[:selected]
     begin
       url = 'http://' + MyUtils.get_ip_from_hostname(c[:target]) +'/api/status'
       uri = URI.parse(url)
@@ -67,7 +69,7 @@ class ContentController
 
       Timeout::timeout(@timeout) do
         res = http.request(req)
-        c[:enable] = res.code == "200"
+        c[:is_alive] = res.code == "200"
 
         if res.code == "200"
           state = JSON.parse(res.body)
@@ -76,12 +78,14 @@ class ContentController
             p "warning.. deferrent hosts or ports is mixed in targets. "
           end
           @led_controller.set_host_and_port(host, port)
+
+          enable_content(c, c[:selected])
         end
 
       end
     rescue => e
       p c[:target] + ": " + e.inspect
-      c[:enable] = false
+      c[:is_alive] = false
     end
   end
 end
