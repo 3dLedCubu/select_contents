@@ -12,13 +12,13 @@ require './led_controller'
 require './content_controller'
 
 $large_contents = [
-  { id: 'lego', target: 'block-identifier.local:5001', name: 'ブロック', enable:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
-  { id: 'paint', target: 'painting.local:5001', name: 'おえかき',enable:false, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
-  { id: 'camera', target: 'hitokage.local:5001', name: 'カメラ', enable:false, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
+  { id: 'lego', target: 'block-identifier.local', port:'5001', name: 'ブロック', enable:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
+  { id: 'paint', target: 'painting.local', port:'5001', name: 'おえかき',enable:false, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
+  { id: 'camera', target: 'hitokage.local', port:'5001', name: 'カメラ', enable:false, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
 ]
 
 $small_contents = [
-  { id: 'screen_saver', target: 'mori-san.local:5001', name: 'デモ', enable:false, selected: false, unselect_img: 'assets/Kit_btn_Demo_Off.png', select_img: 'assets/Kit_btn_Demo_On.png'  }
+  { id: 'screen_saver', target: 'mori-san.local', port:'5001', name: 'デモ', enable:false, selected: false, unselect_img: 'assets/Kit_btn_Demo_Off.png', select_img: 'assets/Kit_btn_Demo_On.png'  }
 ]
 
 $light_off_contents = [
@@ -33,16 +33,16 @@ class App < Sinatra::Base
   register Sinatra::Reloader
   enable :sessions
   set :bind, '0.0.0.0'# 外部アクセス可
-  set :port, 80
+  set :port, 8081
 
   def initialize
     super
-    @led_controller = LEDController.new '172.27.175.176', 9001
-    @content_countroller = ContentController.new $large_contents + $small_contents
+    led_controller = LEDController.new '3d-led-cube.local', 9001
+    @content_countroller = ContentController.new $large_contents + $small_contents, led_controller
   end
 
   get '/' do
-    @led_controller.light_off
+    @content_countroller.switch 'light_off'
 
     @large_contents = $large_contents
     @small_contents = $small_contents
@@ -58,10 +58,6 @@ class App < Sinatra::Base
     id = params['id']
 
     @content_countroller.switch id
-
-    if(id == 'light_off')
-      @led_controller.light_off
-    end
 
     return true 
   end

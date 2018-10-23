@@ -4,8 +4,7 @@ const click_icon = id => {
         type:'POST',
         data:{ 'id' : id }
     })
-
-    .fail(data => alert('failed'));
+    .fail(data => console.log('failed POST select'));
 
     $('.icon').each((index, element) => {
         console.info(element);
