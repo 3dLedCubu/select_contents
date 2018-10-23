@@ -37,7 +37,8 @@ class App < Sinatra::Base
 
   def initialize
     super
-    led_controller = LEDController.new '3d-led-cube.local', 9001
+    #led_controller's hostname and port will overwrite by content_controller's status response.
+    led_controller = LEDController.new '3d-led-cube.local', 9001 
     @content_countroller = ContentController.new $large_contents + $small_contents, led_controller
   end
 

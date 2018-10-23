@@ -7,11 +7,35 @@ class LEDController
     @host = host
     @port = port
     @pool = Thread::Pool.new(1)
+    @m = Mutex.new
   end
 
   def light_off
     @pool.process{send_empty_data}
   end
+
+  def set_host_and_port(host, port)
+    @m.synchronize {
+      @host = host
+      @port = port
+    }
+  end
+
+  def is_host_and_port_same?(host, port)
+    return @host == host && @port == port
+  end
+
+  def host
+    @m.synchronize {
+      @host
+    }    
+  end
+  def port
+    @m.synchronize {
+      @port
+    }
+  end
+
 
   private
 

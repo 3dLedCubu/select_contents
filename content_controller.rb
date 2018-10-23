@@ -68,6 +68,16 @@ class ContentController
       Timeout::timeout(@timeout) do
         res = http.request(req)
         c[:enable] = res.code == "200"
+
+        if res.code == "200"
+          state = JSON.parse(res.body)
+          host, port = state["target"].split(":")
+          unless @led_controller.is_host_and_port_same?(host, port)
+            p "warning.. deferrent hosts or ports is mixed in targets. "
+          end
+          @led_controller.set_host_and_port(host, port)
+        end
+
       end
     rescue => e
       p c[:target] + ": " + e.inspect
