@@ -59,7 +59,6 @@ class ContentController
   end
 
   def update_status(c)
-    p c[:selected]
     begin
       url = 'http://' + MyUtils.get_ip_from_hostname(c[:target]) +'/api/status'
       uri = URI.parse(url)
