@@ -12,9 +12,9 @@ require './led_controller'
 require './content_controller'
 
 $large_contents = [
-  { id: 'lego', target: 'block-identifier.local', port:'5001', name: 'ブロック', is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main01_off.png', select_img: 'assets/kit_btn_main01_on.png' },
-  { id: 'paint', target: 'painting.local', port:'5001', name: 'おえかき',is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main02_off.png', select_img: 'assets/kit_btn_main02_on.png' },
-  { id: 'camera', target: 'hitokage.local', port:'5001', name: 'カメラ', is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main03_off.png', select_img: 'assets/kit_btn_main03_on.png' }
+  { id: 'lego', target: 'block-identifier.local', port:'5001', name: 'ブロック', is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main01_Off.png', select_img: 'assets/kit_btn_main01_On.png' },
+  { id: 'paint', target: 'painting.local', port:'5001', name: 'おえかき',is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main02_Off.png', select_img: 'assets/kit_btn_main02_On.png' },
+  { id: 'camera', target: 'hitokage.local', port:'5001', name: 'カメラ', is_alive:false, selected: false, unselect_img: 'assets/kit_btn_main03_Off.png', select_img: 'assets/kit_btn_main03_On.png' }
 ]
 
 $small_contents = [

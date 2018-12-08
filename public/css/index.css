@@ -36,7 +36,7 @@ html, body {
 }
 
 .title_container {
-    height: 28%;
+    height: 33.6%;
 }
 
 .contents_container {
@@ -57,17 +57,23 @@ html, body {
 
     display: flex;
     justify-content: space-between;
+
+    position: absolute;
+    bottom: 21.5%;
 }
 
 .small_contents_container {
     width: 14.2%;
+
+    position: absolute;
+    right: 0;
 }
 
 .light_off_contents_container {
     width: 10.7%;
 
     position: absolute;
-    bottom: 24%;
+    bottom: 30%;
     right: 0;
 }
 
