@@ -93,14 +93,17 @@ html, body {
     width: 100%;
 }
 
-.unselected > img.selected_image {
+.icon:not(.selected) > img.selected_image {
     display: none;
 }
 
-.selected > img.unselected_image {
+.icon:not(.unselected) > img.unselected_image {
     display: none;
 }
 
+.icon:not(.pressed) > img.pressed_image {
+    display: none;
+}
 .info {
     height: 1pt;
 }

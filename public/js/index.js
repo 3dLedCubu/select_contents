@@ -1,4 +1,5 @@
-const click_icon = id => {
+$('.icon').on('mouseup touchend', function() {
+    const id = $(this).data('id');
     $.ajax({
         url:'./select',
         type:'POST',
@@ -6,15 +7,20 @@ const click_icon = id => {
     })
     .fail(data => console.log('failed POST select'));
 
-    $('.icon').each((index, element) => {
-        console.info(element);
-        var cls = ['selected', 'unselected'];
-        if(element.id == id){
-            cls = cls.reverse();
+    $('.icon').each(function() {
+        if($(this).data('id') == id){
+            $(this).removeClass('unselected pressed').addClass('selected');
+        } else {
+            $(this).removeClass('selected pressed').addClass('unselected');
         }
-        $('#' + element.id).removeClass(cls[0]).addClass(cls[1]);
     })
-}
+});
+
+$('.icon').on('mousedown touchstart', function() {
+    if ($(this).hasClass('unselected')) {
+      $(this).removeClass('unselected').addClass('pressed');
+    }
+});
 
 const getStatus = () =>{
     $.getJSON('/status', function(data) {
