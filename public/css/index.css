@@ -1,29 +1,9 @@
 html, body {
     margin: 0;
     overflow: hidden;
-}
-
-@media (min-aspect-ratio: 3/2) {
-    .bg {
-        width: 100vw;
-        height: 100vh;
-
-        background-image: url(../assets/kit_bg.png);
-        background-repeat: no-repeat;
-        background-size: 100vw 100vh;
-    }
-}
-
-@media (max-aspect-ratio: 3/2) {
-    .bg {
-        width: 100vw;
-        height: 100vh;
-
-        background-image: url(../assets/kit_bg.png);
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
+    background-image: url(../assets/kit_bg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 113%;
 }
 
 .container {
