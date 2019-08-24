@@ -26,7 +26,7 @@ const getStatus = () =>{
     $.getJSON('/status', function(data) {
         $.each(data, function(index) {
             target = $('#' + data[index].id + '_status')
-            if (data[index].enable){
+            if (data[index].is_alive){
                 // hide
                 target.hide()
             }
